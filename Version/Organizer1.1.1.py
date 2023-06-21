@@ -15,6 +15,14 @@ from tkinter import messagebox
 from shutil import move as shmove
 from os import getcwd, listdir,remove
 
+#keylistener
+from pynput import keyboard
+
+#TODO 
+#--add a button to create new folders
+#--add keyboard listener
+#--add favorite label
+
 WIDTH=1200
 HEIGHT=780
 UNSUPPORTED_TYPE=[".ini"]
@@ -27,6 +35,9 @@ class color():
 class App(tkinter.Tk):
     def __init__(self):
         super().__init__()
+        
+        self.listener = keyboard.Listener(on_press=self.on_press) 
+        self.listener.start()
         self.num_button=0 #number of button added to the GUI
         self.current_row=0
         self.current_column=0
@@ -34,7 +45,24 @@ class App(tkinter.Tk):
 
         self.img=None
 
-        botton_colors=[{"bg":"#ede2e1","fg":"#000000"},{"bg":"#fa0000","fg":"#ffffff"},{"bg":"#0000fa","fg":"#ffffff"}]
+        botton_colors=[
+            {
+                "bg":"#ede2e1",
+                "fg":"#000000"
+            },
+            {
+                "bg":"#fa0000",
+                "fg":"#ffffff"
+            },
+            {
+                "bg":"#0000fa",
+                "fg":"#ffffff"
+            },
+            {
+                "bg":"#00ff00",
+                "fg":"#ffffff"
+            }
+            ]
 
         self.path=ttk.Entry(width=70)
         self.path.place(x=20,y=10)
@@ -46,6 +74,9 @@ class App(tkinter.Tk):
         self.current_img=0
 
 #       fixed button
+        self.vault_button=tkinter.Button(self,text="to vault", width=13,height=1,bg=botton_colors[3]["bg"],fg=botton_colors[3]["fg"],command=self.move_to_vault)
+        self.vault_button.place(x=1000,y=745)
+
         self.directory_button=tkinter.Button(self,text="examinate",width=13,height=1,bg=botton_colors[0]["bg"],fg=botton_colors[0]["fg"],command=self.get_directory) #lack command parameter add later
         self.directory_button.place(x=450,y=8)
 
@@ -169,6 +200,26 @@ class App(tkinter.Tk):
         self.num_button=0
         self.current_row=0
         self.current_column=0
+    def move_to_vault(self):
+        src=r"{path}/{img}".format(path=self.current_path,img=self.file_list[self.current_img])
+        dst=r"C:/Users/Soulx/Desktop/Baul"
+        shmove(src,dst)
+        self.move_img.append(self.file_list[self.current_img])
+        self.undostack.append({"img_name":self.file_list[self.current_img],"path":dst})
+        self.next()
+    def on_press(self,key):
+        try:
+            if(key==key.left and self.file_list):
+                self.previous()
+            elif(key==key.right and self.file_list):
+                self.next()
+            elif(key==key.delete):
+                self.Delete_File()
+            elif(key==key.end):
+                self.Move_File_Outside_Folder()
+        except:
+            pass
+
 #######################TESTING AREA###################################################
     def testing(self):
         add_button=tkinter.Button(self,text="add",width=13,height=1,command=self.add_button_test)
