@@ -38,7 +38,7 @@ from pynput import keyboard
 #--Language changed to English
 WIDTH=1200
 HEIGHT=780
-SUPPORTED_TYPE=[".jpg",".png",".jpeg",".gif"]
+SUPPORTED_TYPE=[".jpg",".png",".jpeg",".gif",".JPG",".PNG",".JPEG",".GIF"]
 try:
     with open("config.ini","r",encoding="UTF-8") as config:
         config={i.split("=")[0]:i.split("=")[1]for i in config.read().split("\n")}
