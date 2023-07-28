@@ -3,6 +3,7 @@ from os import listdir
 from PIL import Image
 from shutil import move
 from pprint import pprint
+intengrity_check=__import__("Integrity")
 SUPPORTED_TYPE=[".jpg",".png",".jpeg",".gif",".JPG",".PNG",".JPEG",".GIF",".webp",".JPE"]
 PATH=argv[1]
 
