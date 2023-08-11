@@ -1,8 +1,8 @@
 from PIL import Image,ImageFile
 from os import listdir
 ImageFile.LOAD_TRUNCATED_IMAGES=True
-PATH=f"C:\\Users\\Soulx\\Desktop\\Webp"
-TARGET=f"C:\\Users\\Soulx\\Desktop\\Webp\\Converted"
+PATH={"PATH"}
+TARGET={"TARGET"}
 
 DIRLIST=[file for file in listdir(PATH) if ".webp" in file]
 for image in DIRLIST:
