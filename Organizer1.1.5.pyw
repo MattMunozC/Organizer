@@ -63,6 +63,8 @@ class App(tkinter.Tk):
         self.num_button=0 #number of button added to the GUI
         self.current_row=0
         self.current_column=0
+        #The next line is up to debate since the dev doesn't understand how does getcwd() work, there's some debate about what 
+        #path does the function return
         self.current_path=getcwd()
 
         self.img=None
