@@ -19,6 +19,8 @@ from os import mkdir as shmkdir
 
 #keylistener
 from pynput import keyboard
+import Config
+
 
 #TODO 
 #--add a button to create new folders WIP
@@ -69,24 +71,7 @@ class App(tkinter.Tk):
 
         self.img=None
 
-        botton_colors=[
-            {
-                "bg":"#ede2e1",
-                "fg":"#000000"
-            },
-            {
-                "bg":"#fa0000",
-                "fg":"#ffffff"
-            },
-            {
-                "bg":"#0000fa",
-                "fg":"#ffffff"
-            },
-            {
-                "bg":"#00ff00",
-                "fg":"#ffffff"
-            }
-            ]
+
 
         self.path=ttk.Entry(width=70)
         self.path.place(x=20,y=10)
@@ -98,25 +83,71 @@ class App(tkinter.Tk):
         self.current_img=0
 
 #       fixed button
-        self.vault_button=tkinter.Button(self,text="to vault", width=13,height=1,bg=botton_colors[3]["bg"],fg=botton_colors[3]["fg"],command=self.move_to_vault)
+        self.vault_button=tkinter.Button(self,
+                                         text="to vault", 
+                                         width=13,height=1,
+                                         bg=Config.vault_color["bg"],
+                                         fg=Config.vault_color["fg"],
+                                         command=self.move_to_vault
+                                         )
         self.vault_button.place(x=1000,y=745)
 
-        self.directory_button=tkinter.Button(self,text="examinate",width=13,height=1,bg=botton_colors[0]["bg"],fg=botton_colors[0]["fg"],command=self.get_directory) #lack command parameter add later
+        self.directory_button=tkinter.Button(self,
+                                             text="examinate",
+                                             width=13,
+                                             height=1,
+                                             bg=Config.default_color["bg"],
+                                             fg=Config.default_color["fg"],
+                                             command=self.get_directory
+                                             ) #lack command parameter add later
         self.directory_button.place(x=450,y=8)
 
-        self.next_button=tkinter.Button(self,text="next",width=13,height=1,bg=botton_colors[0]["bg"],fg=botton_colors[0]["fg"],command=self.next)
+        self.next_button=tkinter.Button(self,
+                                        text="next",
+                                        width=13,
+                                        height=1,
+                                        bg=Config.default_color["bg"],
+                                        fg=Config.default_color["fg"],
+                                        command=self.next
+                                        )
         self.next_button.place(x=400,y=745)
 
-        self.previous_button=tkinter.Button(self,text="previous",width=13,height=1,bg=botton_colors[0]["bg"],fg=botton_colors[0]["fg"],command=self.previous)
+        self.previous_button=tkinter.Button(self,
+                                            text="previous",
+                                            width=13,
+                                            height=1,
+                                            bg=Config.default_color["bg"],
+                                            fg=Config.default_color["fg"],
+                                            command=self.previous
+                                            )
         self.previous_button.place(x=250,y=745)
 
-        self.undo_button=tkinter.Button(self,text="undo",width=13,height=1,bg=botton_colors[0]["bg"],fg=botton_colors[0]["fg"],command=self.Undo_Last_Action)
+        self.undo_button=tkinter.Button(self,text="undo",
+                                        width=13,
+                                        height=1,
+                                        bg=Config.default_color["bg"],
+                                        fg=Config.default_color["fg"],
+                                        command=self.Undo_Last_Action
+                                        )
         self.undo_button.place(x=755, y=745)
 
-        self.delete_button=tkinter.Button(self,text="delete", width=13,height=1,bg=botton_colors[1]["bg"],fg=botton_colors[1]["fg"],command=self.Delete_File)
+        self.delete_button=tkinter.Button(self,
+                                          text="delete", 
+                                          width=13,
+                                          height=1,
+                                          bg=Config.delete_color["bg"],
+                                          fg=Config.delete_color["fg"],
+                                          command=self.Delete_File
+                                          )
         self.delete_button.place(x=20,y=745)
 
-        self.yeet_button=tkinter.Button(self,text="Yeet", width=13,height=1,bg=botton_colors[2]["bg"],fg=botton_colors[2]["fg"],command=self.Move_File_Outside_Folder)
+        self.yeet_button=tkinter.Button(self,text="Yeet", 
+                                        width=13,
+                                        height=1,
+                                        bg=Config.botton_colors[2]["bg"],
+                                        fg=Config.botton_colors[2]["fg"],
+                                        command=self.Move_File_Outside_Folder
+                                        )
         self.yeet_button.place(x=600,y=745)
 
 #       menubar

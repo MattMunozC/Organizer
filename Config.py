@@ -1,0 +1,35 @@
+botton_colors=[
+    {
+        "bg":"#ede2e1",
+        "fg":"#000000"
+    },
+    {
+        "bg":"#fa0000",
+                "fg":"#ffffff"
+    },
+    {
+        "bg":"#0000fa",
+        "fg":"#ffffff"
+    },
+    {
+        "bg":"#00ff00",
+        "fg":"#ffffff"
+    }
+    ]
+#Buttons
+default_color=    {
+        "bg":"#ede2e1",
+        "fg":"#000000"
+    }
+vault_color={
+        "bg":"#00ff00",
+        "fg":"#ffffff"
+    }
+delete_color={
+        "bg":"#fa0000",
+        "fg":"#ffffff"
+    }
+yeet_color=    {
+        "bg":"#0000fa",
+        "fg":"#ffffff"
+    }
